@@ -1,4 +1,9 @@
 ﻿Imports System.Threading
+'Taylor Herndon
+'RCET0265
+'Spring 2021
+'Better Calculator with multithreading
+'https://github.com/TaylorHerndon/Better-Calculator
 
 Module Module1
 
@@ -87,6 +92,7 @@ Module Module1
                 Console.WriteLine("1. Addition [+]" & vbNewLine & "2. Subtraction [-]" & vbNewLine & "3. Multiplication [x]" & vbNewLine & "4. Division [÷]")
 
                 Select Case MyActions.ConsoleKeyToNumber()
+
                     Case 1
 
                         Operation = "+"

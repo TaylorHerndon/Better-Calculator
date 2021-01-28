@@ -4,15 +4,20 @@ Module MyActions
 
     Sub PasteTitle(Number1 As Double, Number2 As Double, Operation As String, Result As Double)
 
+        'Clears the console window and pastes in a title block. This makes a nice looking header and makes it so I only need to write out this header once.
+
         Console.Clear()
         Console.WriteLine("[--[Welcome to BetterCalculator Incorperated's better calculator TI-X99SRX Titanium Platinum Express]--]")
         Console.WriteLine("[}===================================================================================================={]")
-        Console.WriteLine("[" & Number1 & "] " & Operation & " [" & Number2 & "] = [" & Result & "]")
+        Console.WriteLine(vbNewLine & "[" & Number1 & "] " & Operation & " [" & Number2 & "] = [" & Result & "]" & vbNewLine)
         Console.WriteLine("[}===================================================================================================={]")
 
 
     End Sub
 
+    'Converts the ConsoleKey.Key value to a string. I did this because I got really tired of working with the consolekey value.
+    'This can be called upon at any point instead of the Console.ReadKey.Key
+    'The major thing that I am trying to accomplish here is to have the NumPad numbers and the numbers above the keyboard return the same value.
     Function ConsoleKeyToString()
 
         Dim ConvertedString As String = ""
@@ -122,6 +127,7 @@ Module MyActions
 
     End Function
 
+    'Same thing as the ConsoleKeyToString but is specific to numbers.
     Function ConsoleKeyToNumber()
 
         Dim ConvertedString As Integer = Nothing
