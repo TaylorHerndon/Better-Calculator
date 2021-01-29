@@ -1,4 +1,7 @@
-﻿Imports System.Threading
+﻿Option Explicit On
+Option Strict On
+Imports System.Threading
+
 'Taylor Herndon
 'RCET0265
 'Spring 2021
@@ -11,14 +14,14 @@ Module Module1
     'This is needed to not interfere with the normal console interaction.
     'ie. Console.Readkey.key could not be used because it would overide the normal user inputs.
 
-    Declare Function GetAsyncKeyState Lib "user32" (ByVal vkey As Integer) As Short
+    Declare Function GetAsyncKeyState Lib "user32" (ByVal vkey As Integer) As Boolean
 
     Sub Main()
 
         'Initalizing multithreading to be able to abort the program at ANY point.
 
-        Dim thread1 As Thread = New Thread(New ThreadStart(AddressOf Calculator))
-        Dim thread2 As Thread = New Thread(New ThreadStart(AddressOf Abort))
+        Dim thread1 As Thread = New Thread(AddressOf Calculator)
+        Dim thread2 As Thread = New Thread(AddressOf Abort)
 
         'Starting both the calculator and abort processes
         thread1.Start()
@@ -33,6 +36,7 @@ Module Module1
         Dim Number2 As Double = Nothing
         Dim Operation As String = "~"
         Dim Result As Double = Nothing
+        Dim UserSelect As Integer = Nothing
 
         'Intro lines
         Console.WriteLine("Hello, welcome to the better calculator!")
@@ -55,7 +59,7 @@ Module Module1
 
                 Try
 
-                    Number1 = Console.ReadLine()
+                    Number1 = Convert.ToDouble(Console.ReadLine())
 
                 Catch
 
@@ -73,7 +77,7 @@ Module Module1
 
                 Try
 
-                    Number2 = Console.ReadLine()
+                    Number2 = Convert.ToDouble(Console.ReadLine())
 
                 Catch
 
@@ -91,7 +95,13 @@ Module Module1
                 Console.WriteLine("Now... what do you want for your operation?")
                 Console.WriteLine("1. Addition [+]" & vbNewLine & "2. Subtraction [-]" & vbNewLine & "3. Multiplication [x]" & vbNewLine & "4. Division [÷]")
 
-                Select Case MyActions.ConsoleKeyToNumber()
+                Do Until UserSelect <> Nothing
+
+                    UserSelect = CInt(MyActions.ConsoleKeyToNumber())
+
+                Loop
+
+                Select Case UserSelect
 
                     Case 1
 
