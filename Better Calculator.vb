@@ -8,7 +8,7 @@ Imports System.Threading
 'Better Calculator with multithreading
 'https://github.com/TaylorHerndon/Better-Calculator
 
-Module Module1
+Module BetterCalculator
 
     'Declaring a function to be able to get the currently pressed key.
     'This is needed to not interfere with the normal console interaction.
@@ -32,11 +32,11 @@ Module Module1
     'Calculator routine
     Sub Calculator()
 
-        Dim Number1 As Double = Nothing
-        Dim Number2 As Double = Nothing
-        Dim Operation As String = "~"
-        Dim Result As Double = Nothing
-        Dim UserSelect As Integer = Nothing
+        Dim number1 As Double = Nothing
+        Dim number2 As Double = Nothing
+        Dim operation As String = "~"
+        Dim result As Double = Nothing
+        Dim userSelect As Integer = Nothing
 
         'Intro lines
         Console.WriteLine("Hello, welcome to the better calculator!")
@@ -52,107 +52,86 @@ Module Module1
         Do
 
             'Get Number 1
-            Do While Number1 = Nothing
+            Do While number1 = Nothing
 
-                MyActions.PasteTitle(Number1, Number2, Operation, Result)
+                MyActions.PasteTitle(number1, number2, operation, result)
                 Console.WriteLine(vbNewLine & "Please enter your first number...")
 
                 Try
-
-                    Number1 = Convert.ToDouble(Console.ReadLine())
-
+                    number1 = Convert.ToDouble(Console.ReadLine())
                 Catch
-
-                    Number1 = Nothing
-
+                    number1 = Nothing
                 End Try
 
             Loop
 
             'Get Number 2
-            Do While Number2 = Nothing
+            Do While number2 = Nothing
 
-                MyActions.PasteTitle(Number1, Number2, Operation, Result)
+                MyActions.PasteTitle(number1, number2, operation, result)
                 Console.WriteLine(vbNewLine & "Please enter your second number...")
 
                 Try
-
-                    Number2 = Convert.ToDouble(Console.ReadLine())
-
+                    number2 = Convert.ToDouble(Console.ReadLine())
                 Catch
-
-                    Number2 = Nothing
-
+                    number2 = Nothing
                 End Try
 
             Loop
 
             'Get desired operation
-            Do Until Operation <> "~"
+            Do Until operation <> "~"
 
-                MyActions.PasteTitle(Number1, Number2, Operation, Result)
+                MyActions.PasteTitle(number1, number2, operation, result)
 
                 Console.WriteLine("Now... what do you want for your operation?")
                 Console.WriteLine("1. Addition [+]" & vbNewLine & "2. Subtraction [-]" & vbNewLine & "3. Multiplication [x]" & vbNewLine & "4. Division [÷]")
 
-                Do Until UserSelect <> Nothing
-
-                    UserSelect = CInt(MyActions.ConsoleKeyToNumber())
-
+                Do Until userSelect <> Nothing
+                    userSelect = CInt(MyActions.ConsoleKeyToNumber())
                 Loop
 
-                Select Case UserSelect
+                Select Case userSelect
 
                     Case 1
-
-                        Operation = "+"
-                        Result = Number1 + Number2
-
+                        operation = "+"
+                        result = number1 + number2
                     Case 2
-
-                        Operation = "-"
-                        Result = Number1 - Number2
-
+                        operation = "-"
+                        result = number1 - number2
                     Case 3
-
-                        Operation = "x"
-                        Result = Number1 * Number2
-
+                        operation = "x"
+                        result = number1 * number2
                     Case 4
-
-                        Operation = "÷"
-                        Result = Number1 / Number2
-
+                        operation = "÷"
+                        result = number1 / number2
                     Case Else
-
-                        Operation = "~"
+                        operation = "~"
 
                 End Select
 
             Loop
 
             'Ask if the user wants to run the calculator process again
-            MyActions.PasteTitle(Number1, Number2, Operation, Result)
+            MyActions.PasteTitle(number1, number2, operation, result)
             Console.WriteLine("Your result should be in the header.")
             System.Threading.Thread.Sleep(2000)
             Console.WriteLine("Do you want to compute again?")
             System.Threading.Thread.Sleep(1000)
             Console.WriteLine("Y - N")
 
-            Do Until Operation = "~"
+            Do Until operation = "~"
 
                 Select Case Console.ReadKey.Key
 
                     Case ConsoleKey.Y
-
-                        Number1 = Nothing
-                        Number2 = Nothing
-                        Operation = "~"
-                        Result = Nothing
+                        number1 = Nothing
+                        number2 = Nothing
+                        operation = "~"
+                        result = Nothing
 
                     Case ConsoleKey.N
-
-                        MyActions.PasteTitle(Number1, Number2, Operation, Result)
+                        MyActions.PasteTitle(number1, number2, operation, result)
                         Console.WriteLine("Thank you for choosing BetterCalculator Incorperated!")
                         System.Threading.Thread.Sleep(2000)
                         Console.WriteLine("Remember to keep on hating SimpleCalculator Corp!")
